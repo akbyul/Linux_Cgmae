@@ -40,53 +40,55 @@ void	file_to_buffer(FILE *fp, char **buffer, int size)
 	}
 }
 
-void	buffer_to_map(char ***map, char **buffer, int set_col, int set_low)
+void	buffer_to_map(char ***map, char **buffer, int set_col, int set_row)
 {
 	int	i, m, n;
 
 	i = 0;
 	m = set_col;
-	n = set_low;
+	n = set_row;
 	while (buffer[i][0])
 	{
 		ft_strcpy(map[m][n], buffer[i++]);
 		n++;
-		if (buffer[i][0] == '\n')
+		while (buffer[i][0] == '\n' && buffer[i][0])
 		{
 			i++;
 			m++;
-			n = set_low;
+			n = set_row;
 		}
 	}
 }
 
-int	check_file_size(int *col_size, int *low_size, char *file_name)
+int	check_file_size(int *col_size, int *row_size, char *file_name)
 {
 	FILE	*fp;
 	char	**buffer;
 	int		size;
+	int		check_row;
 	int		i;
 
 	fp = fopen(file_name, "r");
 	if (is_null(fp))
-		return (1);
+		return (2);
 	size = buffer_size(fp);
 	buffer = memory_two_allocate(size + 1, 9);
 	if (is_null(buffer))
-		return (2);
+		return (1);
 	file_to_buffer(fp, buffer, size);
 
 	i = 0;
-	while (buffer[i][0] && buffer[i][0] != '\n')
-	{
-		(*low_size)++;
-		i++;
-	}
-	*low_size *= 2;
 	while (buffer[i][0])
 	{
-		if (buffer[i][0] == '\n')
-			(*col_size)++;
+		check_row = 0;
+		while (buffer[i][0] && buffer[i][0] != '\n')
+		{
+			check_row++;
+			i++;
+		}
+		(*col_size)++;
+		if (check_row > *row_size)
+			*row_size = check_row;
 		i++;
 	}
 	two_pointer_free(buffer, size + 1);
@@ -94,7 +96,7 @@ int	check_file_size(int *col_size, int *low_size, char *file_name)
 	return (0);
 }
 
-int	set_file_to_map(char ***map, char *file_name, int set_col, int set_low)
+int	set_file_to_map(char ***map, char *file_name, int set_col, int set_row)
 {
 	FILE	*fp;
 	char	**buffer;
@@ -102,13 +104,13 @@ int	set_file_to_map(char ***map, char *file_name, int set_col, int set_low)
 
 	fp = fopen(file_name, "r");
 	if (is_null(fp))
-		return (1);
+		return (2);
 	size = buffer_size(fp);
 	buffer = memory_two_allocate(size + 1, 9);
 	if (is_null(buffer))
-		return (2);
+		return (1);
 	file_to_buffer(fp, buffer, size);
-	buffer_to_map(map, buffer, set_col, set_low);
+	buffer_to_map(map, buffer, set_col, set_row);
 	two_pointer_free(buffer, size + 1);
 	fclose(fp);
 	return (0);

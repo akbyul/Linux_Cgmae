@@ -15,12 +15,12 @@ void	two_pointer_free(char **arr, int size)
 	free(arr);
 }
 
-void	three_pointer_free(char ***arr, int col, int row)
+void	three_pointer_free(char ***arr, int col_size, int row_size)
 {
 	int	i;
 
 	i = 0;
-	while (col--)
-		two_pointer_free(arr[i++], row);
+	while (col_size--)
+		two_pointer_free(arr[i++], row_size);
 	free(arr);
 }

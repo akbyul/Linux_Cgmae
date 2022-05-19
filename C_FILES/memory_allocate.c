@@ -1,5 +1,6 @@
 #include <stdlib.h>
-#include <string.h>
+
+void	ft_memset(char *arr, int value, int size);
 
 int	is_null(void *arr)
 {
@@ -16,7 +17,7 @@ char	*memory_one_allocate(int size)
 	arr = (char *)malloc(sizeof(char) * size);
 	if (is_null(arr))
 		return (0);
-	memset(arr, 0, size);
+	ft_memset(arr, 0, size);
 	return (arr);
 }
 
