@@ -1,16 +1,18 @@
-#include <unistd.h>
+#include "../H_FILES/file_struct.h"
 
-void	screen_control(void);
+int		control_file_struct(void);
+void	control_screen(void);
+void	Release(void);
 
-const char	*map_file_name = "../SCREEN_TXT_FILES/map.txt";
-const char	*start_screen_file_name = "../SCREEN_TXT_FILES/start_screen.txt";
-const char	*monster_slime_file_name = "../SCREEN_TXT_FILES/monster_slime.txt";
-char		***map;
-int			map_row_size;
-int			map_col_size;
+char	***map;
+t_file	*map_file;
+t_file	*start_screen_file;
+t_file	*monster_slime_file;
 
 int	main(void)
 {
-	screen_control();
+	if (control_file_struct() == 0)
+		control_screen();
+	Release();
 	return (0);
 }

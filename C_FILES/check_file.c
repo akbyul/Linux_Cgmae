@@ -1,13 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../H_FILES/file_struct.h"
 
 int		is_null(void *);
 char	**memory_two_allocate(int col_size, int row_size);
 void	**two_pointer_free(char **arr, int size);
 char	ft_strcpy(char *dest, char *src);
 
-int	buffer_size(FILE *fp)
+extern char	***map;
+
+int	file_size(FILE *fp)
 {
 	int	size;
 
@@ -17,7 +20,7 @@ int	buffer_size(FILE *fp)
 	return (size);
 }
 
-void	file_to_buffer(FILE *fp, char **buffer, int size)
+void	set_buffer(FILE *fp, char **buffer, int size)
 {
 	int		i;
 	char	file_char;
@@ -40,43 +43,33 @@ void	file_to_buffer(FILE *fp, char **buffer, int size)
 	}
 }
 
-void	buffer_to_map(char ***map, char **buffer, int set_col, int set_row)
-{
-	int	i, m, n;
-
-	i = 0;
-	m = set_col;
-	n = set_row;
-	while (buffer[i][0])
-	{
-		ft_strcpy(map[m][n], buffer[i++]);
-		n++;
-		while (buffer[i][0] == '\n' && buffer[i][0])
-		{
-			i++;
-			m++;
-			n = set_row;
-		}
-	}
-}
-
-int	check_file_size(int *col_size, int *row_size, char *file_name)
+char	**file_to_buffer(t_file *file, int *size)
 {
 	FILE	*fp;
+	char	**buffer;
+
+	fp = fopen(file->name, "r");
+	if (is_null(fp))
+		return (0);
+	*size = file_size(fp);
+	buffer = memory_two_allocate(*size + 1, 5);
+	if (is_null(buffer))
+		return (0);
+	set_buffer(fp, buffer, *size);
+	fclose(fp);
+	return (buffer);
+}
+
+int	check_file_size(t_file *file)
+{
 	char	**buffer;
 	int		size;
 	int		check_row;
 	int		i;
 
-	fp = fopen(file_name, "r");
-	if (is_null(fp))
-		return (2);
-	size = buffer_size(fp);
-	buffer = memory_two_allocate(size + 1, 9);
+	buffer = file_to_buffer(file, &size);
 	if (is_null(buffer))
-		return (1);
-	file_to_buffer(fp, buffer, size);
-
+		return (3);
 	i = 0;
 	while (buffer[i][0])
 	{
@@ -86,32 +79,31 @@ int	check_file_size(int *col_size, int *row_size, char *file_name)
 			check_row++;
 			i++;
 		}
-		(*col_size)++;
-		if (check_row > *row_size)
-			*row_size = check_row;
+		(file->col_size)++;
+		if (check_row > file->row_size)
+			file->row_size = check_row;
 		i++;
 	}
 	two_pointer_free(buffer, size + 1);
-	fclose(fp);
 	return (0);
 }
 
-int	set_file_to_map(char ***map, char *file_name, int set_col, int set_row)
+void	buffer_to_map(char **buffer, t_file *file)
 {
-	FILE	*fp;
-	char	**buffer;
-	int		size;
+	int	i, m, n;
 
-	fp = fopen(file_name, "r");
-	if (is_null(fp))
-		return (2);
-	size = buffer_size(fp);
-	buffer = memory_two_allocate(size + 1, 9);
-	if (is_null(buffer))
-		return (1);
-	file_to_buffer(fp, buffer, size);
-	buffer_to_map(map, buffer, set_col, set_row);
-	two_pointer_free(buffer, size + 1);
-	fclose(fp);
-	return (0);
+	i = 0;
+	m = file->set_col;
+	n = file->set_row;
+	while (buffer[i][0])
+	{
+		ft_strcpy(map[m][n], buffer[i++]);
+		n++;
+		while (buffer[i][0] == '\n' && buffer[i][0])
+		{
+			i++;
+			m++;
+			n = file->set_row;
+		}
+	}
 }

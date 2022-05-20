@@ -1,12 +1,15 @@
 #include <unistd.h>
+#include "../H_FILES/file_struct.h"
 
 int		Init(void);
 int		Update(void);
 void	Render(void);
 void	Release(void);
-int		map_reset(void);
+void	delete_object(t_file *file);
 
-void	screen_control(void)
+extern t_file	*start_screen_file;
+
+void	control_screen(void)
 {
 	char	nkey;
 
@@ -21,8 +24,7 @@ void	screen_control(void)
 		read(0, &nkey, 1);
 
 	// game init screen
-	if (map_reset())
-		return ;
+	delete_object(start_screen_file);
 //	if (start_screen())
 //		return ;
 	Render();
@@ -32,5 +34,4 @@ void	screen_control(void)
 			break ;
 		Render();
 	}
-	Release();
 }

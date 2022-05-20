@@ -1,10 +1,10 @@
 #include <unistd.h>
+#include "../H_FILES/file_struct.h"
 
 int	error_comment(int check);
-int	set_file_to_map(char ***map, char *file_name, int m, int n);
+int	create_object(t_file *file);
 
-extern char	***map;
-extern char	*monster_slime_file_name;
+extern t_file	*monster_slime_file;
 
 int	Update(void)
 {
@@ -16,7 +16,7 @@ int	Update(void)
 	case 'q':
 		return (1);
 	case 's':
-		if (error_comment(set_file_to_map(map, monster_slime_file_name, 3, 20)))
+		if (error_comment(create_object(monster_slime_file)))
 			return (1);
 	default:
 		break;
