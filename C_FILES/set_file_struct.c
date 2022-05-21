@@ -5,6 +5,8 @@ int		is_null(void *arr);
 int		check_file_size(t_file *file);
 int		error_comment(int check);
 void	one_pointer_free(void *arr);
+void	add_node_in_the_end(t_file *file);
+
 
 t_file	*set_file_struct(char *file_name, int set_col, int set_row)
 {
@@ -21,5 +23,6 @@ t_file	*set_file_struct(char *file_name, int set_col, int set_row)
 		one_pointer_free(file);
 		return (0);
 	}
+	add_node_in_the_end(file);
 	return (file);
 }

@@ -7,4 +7,12 @@ t_file	*monster_slime_file;
 t_file	*new_or_save_file;
 t_file	*press_the_arrow_keys_file;
 
+#else
+
+extern t_file	*map_file;
+extern t_file	*start_screen_file;
+extern t_file	*monster_slime_file;
+extern t_file	*new_or_save_file;
+extern t_file	*press_the_arrow_keys_file;
+
 #endif

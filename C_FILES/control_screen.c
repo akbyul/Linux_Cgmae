@@ -25,11 +25,11 @@ void	control_screen(void)
 
 	// game init screen
 	delete_object(start_screen_file);
-	if (create_object(new_or_save_file))
-		return ;
-	if (create_object(press_the_arrow_keys_file))
+	if (create_object(new_or_save_file) || create_object(press_the_arrow_keys_file))
 		return ;
 	Render();
+	delete_object(new_or_save_file);
+	delete_object(press_the_arrow_keys_file);
 	while (1)
 	{
 		if (Update())

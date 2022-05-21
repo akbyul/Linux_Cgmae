@@ -31,7 +31,7 @@ void	delete_object(t_file *file)
 		n = file->row_size;
 		while (n--)
 		{
-			ft_memset(map[file->set_col + m][file->set_row + n], 0, 5);
+			ft_memset(map[file->set_col + m][file->set_row + n], 0, 3);
 			map[file->set_col + m][file->set_row + n][0] = ' ';
 		}
 	}
