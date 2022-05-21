@@ -1,13 +1,11 @@
 #include "../H_FILES/file_struct.h"
+#include "../H_FILES/declare_file_struct.h"
 
 int		control_file_struct(void);
 void	control_screen(void);
 void	Release(void);
 
 char	***map;
-t_file	*map_file;
-t_file	*start_screen_file;
-t_file	*monster_slime_file;
 
 int	main(void)
 {

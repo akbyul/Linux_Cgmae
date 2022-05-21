@@ -1,6 +1,6 @@
-#include <unistd.h>
 #include "../H_FILES/file_struct.h"
 
+int	ft_getch(void);
 int	error_comment(int check);
 int	create_object(t_file *file);
 
@@ -10,7 +10,7 @@ int	Update(void)
 {
 	char	nkey;
 
-	read(0, &nkey, 1);
+	nkey = ft_getch();
 	switch (nkey)
 	{
 	case 'q':

@@ -1,13 +1,13 @@
-#include <unistd.h>
 #include "../H_FILES/file_struct.h"
+#include "../H_FILES/declare_file_struct.h"
 
+int		ft_getch(void);
 int		Init(void);
 int		Update(void);
 void	Render(void);
 void	Release(void);
+int		create_object(t_file *file);
 void	delete_object(t_file *file);
-
-extern t_file	*start_screen_file;
 
 void	control_screen(void)
 {
@@ -21,12 +21,14 @@ void	control_screen(void)
 	// Press Enter to Start
 	nkey = 0;
 	while (nkey != '\n')
-		read(0, &nkey, 1);
+		nkey = ft_getch();
 
 	// game init screen
 	delete_object(start_screen_file);
-//	if (start_screen())
-//		return ;
+	if (create_object(new_or_save_file))
+		return ;
+	if (create_object(press_the_arrow_keys_file))
+		return ;
 	Render();
 	while (1)
 	{

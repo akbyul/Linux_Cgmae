@@ -21,7 +21,7 @@ char	*memory_one_allocate(int size)
 	return (arr);
 }
 
-char	**memory_two_allocate(int col_size, int row_size)
+char	**memory_two_allocate(volatile int col_size, volatile int row_size)
 {
 	char	**arr;
 
@@ -37,7 +37,7 @@ char	**memory_two_allocate(int col_size, int row_size)
 	return (arr);
 }
 
-char	***memory_three_allocate(int col_size, int row_size, int high_size)
+char	***memory_three_allocate(volatile int col_size, volatile int row_size, volatile int high_size)
 {
 	char	***arr;
 

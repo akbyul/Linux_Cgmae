@@ -1,9 +1,29 @@
+#include <stdio.h>
+#include <termios.h>
+
 char	*memory_one_allocate(int size);
 int		is_null(void *arr);
 
+int	ft_getch(void)
+{
+	int				ch;
+	struct termios	new, old;
+
+	tcgetattr(0, &old);
+	new = old;
+
+	new.c_lflag &= !(ECHO | ICANON);
+	new.c_cc[VMIN] = 1;
+	new.c_cc[VTIME] = 0;
+	tcsetattr(0, TCSAFLUSH, &new);
+	ch = getchar();
+	tcsetattr(0, TCSAFLUSH, &old);
+	return (ch);
+}
+
 int	ft_strlen(char *arr)
 {
-	int	size;
+	volatile int	size;
 
 	size = 0;
 	while (arr[size])
@@ -13,7 +33,7 @@ int	ft_strlen(char *arr)
 
 void	ft_strcpy(char *dest, char *src)
 {
-	int	i;
+	volatile int	i;
 
 	i = 0;
 	while (src[i])
@@ -26,7 +46,7 @@ void	ft_strcpy(char *dest, char *src)
 
 void	ft_memset(char *arr, int value, int size)
 {
-	int	i;
+	volatile int	i;
 
 	i = 0;
 	while (i < size)
@@ -35,9 +55,9 @@ void	ft_memset(char *arr, int value, int size)
 
 char	*ft_str_join(char *src1, char *src2)
 {
-	char	*arr;
-	int		size;
-	int		i, k;
+	char			*arr;
+	int				size;
+	volatile int	i, k;
 
 	size = ft_strlen(src1) + ft_strlen(src2);
 	arr = memory_one_allocate(size + 1);

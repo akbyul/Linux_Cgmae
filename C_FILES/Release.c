@@ -1,13 +1,11 @@
 #include "../H_FILES/file_struct.h"
+#include "../H_FILES/declare_file_struct.h"
 
 int		is_null(void *arr);
 void	one_pointer_free(void *arr);
 void	three_pointer_free(void ***arr, int	col_size, int row_size);
 
 extern char		***map;
-extern t_file	*map_file;
-extern t_file	*start_screen_file;
-extern t_file	*monster_slime_file;
 
 void    Release(void)
 {
@@ -19,7 +17,10 @@ void    Release(void)
 		one_pointer_free(start_screen_file->name);
 	if (!is_null((void *)monster_slime_file))
 		one_pointer_free(monster_slime_file->name);
+	if (!is_null((void *)new_or_save_file))
+		one_pointer_free(new_or_save_file->name);
 	one_pointer_free(map_file);
 	one_pointer_free(start_screen_file);
 	one_pointer_free(monster_slime_file);
+	one_pointer_free(new_or_save_file);
 }
