@@ -32,7 +32,7 @@ void	add_node_in_the_end(t_file *file)
 	curr->next = file;
 }
 
-int	head_node(void)
+int	set_head_node(void)
 {
 	screen_head = malloc(sizeof(t_file));
 	if (error_comment(is_null(screen_head)))

@@ -16,6 +16,9 @@ int	error_comment(int check)
 	case 4:
 		printf("NODE SEARCH ERROR\n");
 		return (1);
+	case 5:
+		printf("CURSOR ERROR\n");
+		return (1);
 	default:
 		return (0);
 	}

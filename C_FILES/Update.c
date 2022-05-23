@@ -1,25 +1,46 @@
-#include "../H_FILES/file_struct.h"
+#include "../H_FILES/screen_mecro.h"
+#include "../H_FILES/new_or_load.h"
 
-int	ft_getch(void);
-int	error_comment(int check);
-int	create_object(t_file *file);
-
-extern t_file	*monster_slime_file;
+int		ft_getch(void);
+void	Render(void);
+int		cursor_control(int set_col, int gap, int line_number);
 
 int	Update(void)
 {
-	char	nkey;
+	int		nkey;
+	int		count;
+	t_file	*curr;
 
-	nkey = ft_getch();
-	switch (nkey)
+	count = cursor_control(11, 4, 3);
+	if (count > 0)
+		return (5);
+	switch (count)
 	{
-	case 'q':
-		return (1);
-	case 's':
-		if (error_comment(create_object(monster_slime_file)))
-			return (1);
+	case NEW_GAME:
+		//
+		break ;
+	case LOAD_GAME:
+		//
+		break ;
+	case EXIT:
+		return (0);
 	default:
-		break;
+		return (0);
+	}
+	while (1)
+	{
+		nkey = ft_getch();
+		if (nkey == 'q')
+			break;
+		switch (nkey)
+		{
+		case 's':
+			CREATE_OBJECT("monster_slime.txt")
+			break;
+		default:
+			break;
+		}
+		Render();
 	}
 	return (0);
 }

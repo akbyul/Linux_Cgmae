@@ -1,4 +1,3 @@
-#include "../H_FILES/node_mecro.h"
 #include "../H_FILES/screen_mecro.h"
 
 char	***memory_three_allocate(int col_size, int row_size, int high_size);
@@ -10,8 +9,8 @@ extern char		***map;
 int	Init(void)
 {
 	t_file	*curr;
-	
-	SCREEN_SEARCH("map.txt")
+
+	SEARCH_SCREEN("map.txt")
 	map = memory_three_allocate(curr->col_size + 1, curr->row_size + 1, 3);
 	if (is_null((char *)map))
 		return (1);
@@ -26,12 +25,13 @@ int	Init(void)
 	// game init screen
 	DELETE_OBJECT("start_screen.txt")
 
-	CREATE_OBJECT("new_or_save.txt")
+	CREATE_OBJECT("new_or_load.txt")
 	CREATE_OBJECT("press_the_arrow_keys.txt")
+
 	Render();
 
-	DELETE_OBJECT("press_the_arrow_keys.txt")
-	DELETE_OBJECT("new_or_save.txt")
+//	DELETE_OBJECT("press_the_arrow_keys.txt")
+//	DELETE_OBJECT("new_or_save.txt")
 
 	return (0);
 }
