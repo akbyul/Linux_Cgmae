@@ -21,6 +21,21 @@ int	ft_getch(void)
 	return (ch);
 }
 
+int	ft_strcmp(char *dest, char *src)
+{
+	int	i;
+
+	i = 0;
+	while (1)
+	{
+		if (dest[i] != src[i])
+			return (dest[i] - src[i]);
+		if (dest[i] == 0 && src[i] == 0)
+			return (0);
+		i++;
+	}
+}
+
 int	ft_strlen(char *arr)
 {
 	volatile int	size;

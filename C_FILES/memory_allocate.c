@@ -1,14 +1,7 @@
 #include <stdlib.h>
 
 void	ft_memset(char *arr, int value, int size);
-
-int	is_null(void *arr)
-{
-	if (arr == NULL)
-		return (1);
-	else
-		return (0);
-}
+int		is_null(void *arr);
 
 char	*memory_one_allocate(int size)
 {

@@ -2,6 +2,7 @@
 #include "../H_FILES/file_struct.h"
 
 int		is_null(void *arr);
+int		ft_strcmp(char *dest, char *src);
 int		error_comment(int check);
 void	one_pointer_free(void *arr);
 
@@ -10,15 +11,15 @@ extern t_file	*screen_head;
 t_file	*search_node(char *name)
 {
 	t_file	*curr;
-	curr = screen_head;
-	while (curr->next != NULL)
+	curr = screen_head->next;
+	while (curr != NULL)
 	{
+		if (ft_strcmp(curr->name, name) == 0)
+			break;
 		curr = curr->next;
-		if (curr->name == name)
-			return (curr);
 	}
-	error_comment(4);
-	return (0);
+	one_pointer_free(name);
+	return (curr);
 }
 
 void	add_node_in_the_end(t_file *file)

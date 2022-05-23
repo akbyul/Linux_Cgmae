@@ -1,7 +1,7 @@
-#ifndef SCREEN_DIR_H
-# define SCREEN_DIR_H
+#ifndef FILE_DIR_H
+# define FILE_DIR_H
 
-char	*screen_dir = "../SCREEN_TXT_FILES/";
-char	*header_dir = "../H_FILES/";
+# define SCREEN_DIR "../SCREEN_TXT_FILES/"
+# define HEADER_DIR "../H_FILES/"
 
 #endif
