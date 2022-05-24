@@ -17,4 +17,6 @@ void	delete_object(t_file *file);
 								return (3);
 # define DELETE_SOBJECT(x)	delete_object(x);
 
+# define DELETE_ALL			CREATE_OBJECT("map.txt");
+
 #endif

@@ -35,6 +35,11 @@ void	set_buffer(FILE *fp, char **buffer, int size)
 			fread(buffer[i++], 2, 1, fp);
 			size -= 2;
 		}
+		else if (file_char == '\xe2')
+		{
+			fread(buffer[i++], 5, 1, fp);
+			size -= 5;
+		}
 		else
 		{
 			fread(buffer[i++], 1, 1, fp);

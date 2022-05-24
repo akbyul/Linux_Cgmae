@@ -19,6 +19,9 @@ int	error_comment(int check)
 	case 5:
 		printf("CURSOR ERROR\n");
 		return (1);
+	case 6:
+		printf("NEW GAME ERROR\n");
+		return (1);
 	default:
 		return (0);
 	}

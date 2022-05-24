@@ -3,21 +3,24 @@
 
 int		ft_getch(void);
 void	Render(void);
-int		cursor_control(int set_col, int gap, int line_number);
+int		cursor_control(int set_col, int gap, int line_number, int div_row);
+int		U_new_game(void);
+
+extern int	col_count;
+extern int	row_count;
 
 int	Update(void)
 {
 	int		nkey;
-	int		count;
 	t_file	*curr;
 
-	count = cursor_control(11, 4, 3);
-	if (count > 0)
+	if(cursor_control(11, 4, 3, 1))
 		return (5);
-	switch (count)
+	switch (col_count)
 	{
 	case NEW_GAME:
-		//
+		if (U_new_game())
+			return (6);
 		break ;
 	case LOAD_GAME:
 		//
@@ -27,6 +30,7 @@ int	Update(void)
 	default:
 		return (0);
 	}
+
 	while (1)
 	{
 		nkey = ft_getch();
