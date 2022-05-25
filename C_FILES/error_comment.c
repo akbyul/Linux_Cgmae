@@ -22,6 +22,12 @@ int	error_comment(int check)
 	case 6:
 		printf("NEW GAME ERROR\n");
 		return (1);
+	case 7:
+		printf("Game Home ERROR\n");
+		return (1);
+	case 8:
+		printf("Game Start Error\n");
+		return (1);
 	default:
 		return (0);
 	}

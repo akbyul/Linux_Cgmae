@@ -23,21 +23,29 @@ int	file_size(FILE *fp)
 void	set_buffer(FILE *fp, char **buffer, int size)
 {
 	int		i;
-	char	file_char;
+	int		file_char;
 
 	i = 0;
 	while (size > 0)
 	{
 		file_char = fgetc(fp);
 		fseek(fp, -1, SEEK_CUR);
-		if (file_char == '\xf0' || file_char == '\x9f')
+		if (file_char == 240)
 		{
 			fread(buffer[i++], 2, 1, fp);
-			size -= 2;
+			fread(buffer[i++], 2, 1, fp);
+			size -= 4;
 		}
-		else if (file_char == '\xe2' || file_char == '\xef')
+		else if (file_char == 226)
 		{
 			fread(buffer[i++], 3, 1, fp);
+			fread(buffer[i++], 3, 1, fp);
+			size -= 6;
+		}
+		else if (file_char >= 234 && file_char <= 237)
+		{
+			fread(buffer[i++], 1, 1, fp);
+			fread(buffer[i++], 2, 1, fp);
 			size -= 3;
 		}
 		else

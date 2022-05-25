@@ -59,6 +59,18 @@ void	ft_strcpy(char *dest, char *src)
 	dest[i] = 0;
 }
 
+void	ft_fcpy(FILE *dest, FILE *src)
+{
+	int	c;
+
+	c = fgetc(src);
+	while (c != EOF)
+	{
+		fputc(c, dest);
+		c = fgetc(src);
+	}
+}
+
 void	ft_memset(char *arr, int value, int size)
 {
 	volatile int	i;

@@ -20,7 +20,7 @@ INPUT_NAME:
 		return (6);
 	DELETE_ALL;
 	CREATE_OBJECT("new_game_2_check.txt");
-	CREATE_OBJECT("user_name.txt");
+	CREATE_OBJECT("user_job_name.txt");
 	cursor_control(16, 2, 2, 1);
 	if (col_count == 1)
 		goto INPUT_NAME;
@@ -34,7 +34,7 @@ SELECT_JOB:
 		return (6);
 	DELETE_ALL;
 	CREATE_OBJECT("new_game_4_check.txt");
-	CREATE_OBJECT("user_job.txt");
+	CREATE_OBJECT("user_job_name.txt");
 	cursor_control(16, 2, 2, 1);
 	if (col_count == 1)
 		goto SELECT_JOB;

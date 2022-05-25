@@ -16,7 +16,12 @@ int	 control_file_struct(void)
 	SET_SCREEN_STRUCT(d_c_3_1, "new_game_3_mung.txt", 16, 14);
 	SET_SCREEN_STRUCT(d_c_3_2, "new_game_3_mung_name.txt", 14, 18);
 	SET_SCREEN_STRUCT(d_c_3_3, "new_game_3_mung_stats.txt", 16, 34);
-	SET_SCREEN_STRUCT(d_d, "new_game_4_check.txt", 10, 20);
+	SET_SCREEN_STRUCT(d_c_4, "new_game_4_check.txt", 10, 20);
+
+	SET_SCREEN_STRUCT(f, "game_home.txt", 10, 26);
+
+	SET_SCREEN_STRUCT(g_1, "game_start_state.txt", 2, 4);
+	SET_SCREEN_STRUCT(g_2, "game_start_road.txt", 10, 12);
 
 	SET_SCREEN_STRUCT(x_1, "cursor_1.txt", 2, 2);
 	SET_SCREEN_STRUCT(x_2, "cursor_2.txt", 2, 2);
