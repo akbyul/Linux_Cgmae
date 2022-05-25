@@ -11,7 +11,7 @@ int	Init(void)
 	t_file	*curr;
 
 	SEARCH_SCREEN("map.txt")
-	map = memory_three_allocate(curr->col_size + 1, curr->row_size + 1, 3);
+	map = memory_three_allocate(curr->col_size + 1, curr->row_size + 1, 5);
 	if (is_null((char *)map))
 		return (1);
 

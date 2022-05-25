@@ -13,7 +13,7 @@ int	input_name(void)
 	int		count;
 	char	*arr;
 	t_file	*curr;
-	FILE	*fp = fopen("../SCREEN_TXT_FILES/name.txt", "w+");
+	FILE	*fp = fopen("../SCREEN_TXT_FILES/user_name.txt", "w+");
 
 	if (is_null(fp))
 		return (1);
@@ -21,8 +21,8 @@ int	input_name(void)
 	nkey = 0;
 	count = 0;
 	arr = memory_one_allocate(9);
-	SET_SCREEN_STRUCT(name, "name.txt", 13, 30);
-	SEARCH_SCREEN("name.txt");
+	SET_SCREEN_STRUCT(name, "user_name.txt", 13, 30);
+	SEARCH_SCREEN("user_name.txt");
 	curr->col_size = 1;
 	curr->row_size = 8;
 	while (nkey != '\n')
@@ -38,12 +38,12 @@ int	input_name(void)
 			count--;
 			arr[count] = 0;
 		}
-		FILE	*fp = fopen("../SCREEN_TXT_FILES/name.txt", "w+");
+		fp = fopen("../SCREEN_TXT_FILES/user_name.txt", "w+");
 		if (is_null(fp))
 			return (1);
 		fprintf(fp, "%s", arr);
 		fclose(fp);
-		SEARCH_SCREEN("name.txt");
+		SEARCH_SCREEN("user_name.txt");
 		curr->set_row = 30 - (count / 2);
 		CREATE_SOBJECT(curr);
 		Render();
@@ -57,7 +57,6 @@ int	input_name(void)
 		}
 		DELETE_SOBJECT(curr);
 	}
-	DELETE_ALL;
 	one_pointer_free(arr);
 	return (0);
 }

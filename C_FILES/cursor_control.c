@@ -2,6 +2,7 @@
 
 int		ft_getch(void);
 int		is_enter(void);
+int		is_arrow_keys(void);
 void	Render(void);
 
 int			col_count;
@@ -41,11 +42,9 @@ int	cursor_control(int set_col, int gap, int line_number, int div_row)
 		DELETE_SOBJECT(curr1)
 		DELETE_SOBJECT(curr2)
 		
-		nkey = ft_getch();
-		if (nkey == 27)
+		nkey = is_arrow_keys();
+		if (nkey >= 65 && nkey <= 68)
 		{
-			nkey = ft_getch();
-			nkey = ft_getch();
 			switch (nkey)
 			{
 			case 65:
