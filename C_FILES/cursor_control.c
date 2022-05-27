@@ -33,6 +33,8 @@ int	cursor_control(int set_col, int gap, int line_number, int div_row)
 			check_row++;
 		curr1->set_row = check_row - 4;
 		check_row = curr->row_size - 3 - ((div_row - row_count - 1) * curr->row_size / div_row);
+		if (gap < 0 && col_count == 1)
+			check_row = curr->row_size - 3;
 		while (map[set_col + (col_count * gap)][check_row][0] == ' ')
 			check_row--;
 		curr2->set_row = check_row + 3;

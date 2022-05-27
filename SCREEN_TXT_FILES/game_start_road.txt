@@ -1,5 +1,5 @@
- easy         normal           Hard
-IL + 0        IL + 5         IL + 20
+ easy          normal          Hard
+EL + 0         EL + 5        EL + 20
    \             |             /
     \            |            /
      \           |           /

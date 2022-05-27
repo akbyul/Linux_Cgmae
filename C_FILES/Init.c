@@ -30,8 +30,5 @@ int	Init(void)
 
 	Render();
 
-//	DELETE_OBJECT("press_the_arrow_keys.txt")
-//	DELETE_OBJECT("new_or_save.txt")
-
 	return (0);
 }

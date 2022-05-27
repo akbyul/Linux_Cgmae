@@ -25,7 +25,7 @@ int	select_job(void)
 		return (1);
 	fclose(fp1);
 	SET_SCREEN_STRUCT(job_name, "user_job_name.txt", 13, 28);
-	SET_SCREEN_STRUCT(job, "user_job.txt", 22, 22);
+	SET_SCREEN_STRUCT(job, "user_job.txt", 22, 23);
 	SEARCH_SCREEN("user_job_name.txt");
 	curr->col_size = 1;
 	curr->row_size = 8;
